@@ -4,7 +4,7 @@ import { prisma } from "~~/server/utils/prisma";
 
 
 
-const {githubClientId, githubClientSecret} = useRuntimeConfig();
+const {githubClientId, githubClientSecret, googleClientId , googleClientSecret} = useRuntimeConfig();
 
 export const auth =  betterAuth({
     database: prismaAdapter(prisma, {
@@ -18,5 +18,9 @@ export const auth =  betterAuth({
       clientId:  githubClientId,
       clientSecret: githubClientSecret
      }, 
+    google: { 
+            clientId: googleClientId, 
+            clientSecret: googleClientSecret, 
+        }, 
     },
 });

@@ -15,6 +15,10 @@
             icon="i-simple-icons-google"
             :loading="isLoading"
             :disabled="isLoading"
+              @click="signIn.social({
+              provider: 'google',
+              callbackURL:'/'
+            })"
             >Google</UButton
           >
 

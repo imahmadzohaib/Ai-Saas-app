@@ -3,13 +3,16 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/image'],
+  modules: ['@nuxt/ui', '@nuxt/image', '@vueuse/nuxt'],
   css: ['~/assets/css/main.css'],
   runtimeConfig:{
     tursoDatabaseUrl:"",
     tursoAuthToken: "",
     githubClientId:"",
-    githubClientSecret:"",
+    githubClientSecret:"", 
+    googleClientId:"",
+    googleClientSecret:"",
+    geminiApi:"",
     public:{
       appEnv:""
     }
