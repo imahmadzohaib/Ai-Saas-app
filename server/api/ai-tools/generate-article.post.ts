@@ -2,7 +2,7 @@
 
 
 export default defineEventHandler(async(event) =>{
-    const { articleTopic, articleTopicLength }  = await readBody(event)
+    const { articleTopic, articleLength }  = await readBody(event)
 
     if(!articleTopic){
         throw createError({
@@ -11,14 +11,14 @@ export default defineEventHandler(async(event) =>{
         })
     }    
 
-    if(!articleTopicLength){
+    if(!articleLength){
         throw createError({
             statusCode: 400,
             statusMessage: "Article topic length is required"
         })
     }
 
-    const prompt = `Write an article about ${articleTopic} in ${articleTopicLength? articleTopicLength:500} words`
+    const prompt = `Write an article about ${articleTopic} in ${articleLength? articleLength:500} words. don't use dashes`
     const response = await openai.chat.completions.create({
       model: "gemini-3.1-flash-lite",
       messages: [
@@ -28,7 +28,7 @@ export default defineEventHandler(async(event) =>{
         },
       ],
       temperature: 0.5,
-      max_completion_tokens: articleTopicLength? articleTopicLength: 500,
+      max_completion_tokens: articleLength? articleLength: 500,
 
     });
 

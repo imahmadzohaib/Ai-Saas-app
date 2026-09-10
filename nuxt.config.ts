@@ -3,7 +3,12 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/image', '@vueuse/nuxt'],
+  modules: [
+    '@nuxt/ui',
+    '@nuxt/image',
+    '@vueuse/nuxt',
+    '@nuxtjs/mdc',
+  ],
   css: ['~/assets/css/main.css'],
   runtimeConfig:{
     tursoDatabaseUrl:"",
@@ -12,10 +17,18 @@ export default defineNuxtConfig({
     githubClientSecret:"", 
     googleClientId:"",
     googleClientSecret:"",
+    cloudinaryApiKey:"",
+    cloudinaryApiSecret:"",
+    cloudinaryCloudName:"",
     geminiApi:"",
     public:{
       appEnv:""
     }
+  },
+  mdc: {
+    components: {
+      prose: true,
+    },
   },
 
 })

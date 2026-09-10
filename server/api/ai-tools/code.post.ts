@@ -19,10 +19,7 @@ export default defineEventHandler(async (event) => {
           content:
             "You are a code generator. Answer only in markdown code snippets. Use code comments for explanations.",
         },
-        {
-          role: "user",
-          content: messages,
-        },
+        ...messages
       ],
       temperature: 0.5,
     })

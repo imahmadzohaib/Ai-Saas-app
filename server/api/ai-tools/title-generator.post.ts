@@ -2,7 +2,7 @@
 
 
 export default defineEventHandler(async(event) =>{
-    const { blogTopic, blogCatogery }  = await readBody(event)
+    const { blogTopic, blogCategory }  = await readBody(event)
 
     if(!blogTopic){
         throw createError({
@@ -11,14 +11,14 @@ export default defineEventHandler(async(event) =>{
         })
     }    
 
-    if(!blogCatogery){
+    if(!blogCategory){
         throw  createError({
             statusCode: 400,
-            statusMessage: " Blog catogery is required"
+            statusMessage: " Blog Category is required"
         })
     }
 
-    const prompt = `Generate a blog title for the keyword ${blogTopic} in the category ${blogCatogery}`;
+    const prompt = `Generate a blog title for the keyword ${blogTopic} in the category ${blogCategory}`;
     const response = await openai.chat.completions.create({
       model: "gemini-3.1-flash-lite",
       messages: [

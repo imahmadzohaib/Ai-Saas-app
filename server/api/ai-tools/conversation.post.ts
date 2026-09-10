@@ -19,10 +19,7 @@ export default defineEventHandler(async(event) =>{
           content:
             "You are a helpful assistant",
         },
-        {
-          role: "user",
-          content: messages,
-        },
+        ...messages
       ],
       temperature: 0.5,
       max_completion_tokens: 500,

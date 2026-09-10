@@ -2,8 +2,8 @@
   <div>
     <UContainer class="h-[calc(100vh-88px)] flex flex-col py-4 gap-8">
       <PageHeading
-        title="Conversation"
-        description="Engage in a natural, intelligent conversation with AI for brainstorming"
+        title="Code Generation"
+        description="Generate code using descriptive text."
       />
 
       <UAlert
@@ -37,8 +37,8 @@
               />
             </div>
             <UCard :ui="{ body: 'p-3 sm:p-3' }">
-              <div class="text-sm max-w-prose m-0">
-                <MDC :value="msg.content" class=""/>
+              <div class="text-sm max-w-prose">
+                <MDC :value="msg.content"/>
               </div>
             </UCard>
           </div>
@@ -104,7 +104,7 @@ const sendMessage = async (event: FormSubmitEvent<Schema>) => {
       content: event.data.userPrompt.trim(),
     });
 
-    const data = await $fetch("/api/ai-tools/conversation", {
+    const data = await $fetch("/api/ai-tools/code", {
       method: "POST",
       body: {
         messages: messages.value,
