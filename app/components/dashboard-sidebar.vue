@@ -12,6 +12,8 @@
                     :ui="{label: 'py-2.5', link:'py-3'}" />
                 </div>
             </div>
+            <!-- user counter -->
+             <user-counter />
         </div>
      </aside>
 </template>

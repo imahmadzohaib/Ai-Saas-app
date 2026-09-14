@@ -1,6 +1,11 @@
-
+import  { requireAuth } from  "~~/server/services/better-auth"
+import { incrementApiLimit } from "~~/server/services/user-api-limit";
 
 export default defineEventHandler(async (event) => {
+
+
+  await requireAuth(event);
+
   const { messages } = await readBody(event)
 
   if (!messages) {
@@ -24,5 +29,6 @@ export default defineEventHandler(async (event) => {
       temperature: 0.5,
     })
 
+    await incrementApiLimit(event.context.user.id);
     return response.choices[0]?.message?.content ?? "";
 })

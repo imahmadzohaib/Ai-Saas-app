@@ -119,10 +119,13 @@ const sendMessage = async (event: FormSubmitEvent<Schema>) => {
     }
     state.userPrompt = "";
   } catch (e) {
-    const err = e as FetchError;
-    error.value = getError(err);
+      const err = e as FetchError;
+      if(err.statusCode == 401){
+        navigateTo("/auth/login")
+      }
+      error.value = getError(err);
   } finally {
-    isLoading.value = false;
+     isLoading.value = false;
   }
 };
 </script>

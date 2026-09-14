@@ -1,3 +1,4 @@
+import { incrementApiLimit } from "~~/server/services/user-api-limit";
 
 
 
@@ -32,6 +33,7 @@ export default defineEventHandler(async(event) =>{
 
     });
 
+    await incrementApiLimit(event.context.user.id);
     return response.choices[0]?.message?.content ?? "";
 
 })

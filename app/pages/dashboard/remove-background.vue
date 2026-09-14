@@ -139,14 +139,22 @@ const mappedImageUrl = ref("");
 const generateArticle = async (event: FormSubmitEvent<Schema>) => {
   try {
     isLoading.value = true;
+    const formData = new FormData();
+    if(event.data.image instanceof File){
 
-    const data = await $fetch("/api/ai-tools/title-generator", {
+      formData.append("image", event.data.image)
+    }
+
+    const data = await $fetch<string>("/api/auth/cloudinary-tools/remove-background", {
       method: "POST",
-      body: {},
+      body: formData,
     });
 
-    if (data) {
+
+    if(data){
+      mappedImageUrl.value = data;
     }
+
   } catch (e) {
     const err = e as FetchError;
     error.value = getError(err);

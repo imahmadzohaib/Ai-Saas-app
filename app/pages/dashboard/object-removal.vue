@@ -54,7 +54,7 @@
             <NuxtImg :src="mappedImageUrl" />
           </div>
           <div v-else-if="isLoading && !mappedImageUrl" class="flex flex-col justify-center items-center">
-            Removing Background...
+            Removing object...
           </div>
            
           </UCard>
@@ -145,13 +145,22 @@ const mappedImageUrl = ref("");
 const removeObjectFromImages = async (event: FormSubmitEvent<Schema>) => {
   try {
     isLoading.value = true;
+    const formData = new FormData();
+    if(event.data.image instanceof File){
 
-    const data = await $fetch("/api/ai-tools/title-generator", {
+      formData.append("image", event.data.image)
+    }
+      
+    formData.append("object", event.data.object)
+
+
+    const data = await $fetch("/api/auth/cloudinary-tools/remove-object", {
       method: "POST",
-      body: {},
+      body: formData,
     });
 
     if (data) {
+      mappedImageUrl.value = data as string;
     }
   } catch (e) {
     const err = e as FetchError;

@@ -1,11 +1,15 @@
-import { PrismaClient } from "../../app/generated/prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
+import { PrismaClient } from '~/generated/prisma/client'
+import { PrismaLibSql } from '@prisma/adapter-libsql'
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 
 const adapter = new PrismaLibSql({
-	url: config.tursoDatabaseUrl,
-	authToken: config.tursoAuthToken
-});
+  url: config.tursoDatabaseUrl,
+  authToken: config.tursoAuthToken,
+})
 
-export const prisma = new PrismaClient({adapter});
+const prisma = new PrismaClient({
+  adapter,
+})
+
+export default prisma
