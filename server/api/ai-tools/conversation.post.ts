@@ -2,7 +2,7 @@ import { incrementApiLimit } from "~~/server/services/user-api-limit";
 
 
 
-export default defineEventHandler(async(event) =>{
+export default defineAuthenticatedEventHandler(async(event) =>{
     const { messages}  = await readBody(event)
 
     if(!messages){

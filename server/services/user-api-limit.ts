@@ -26,3 +26,21 @@ export const incrementApiLimit = async ( userId: string)=>{
         })
     }
 }
+
+
+export const getUserApiLimitCount = async ( userId: string) =>{
+      const userApiLimit = await prisma.userApiLimit.findUnique({
+        where: {
+            userId
+        }
+    })
+
+
+
+
+    if(!userApiLimit){
+        return 0;
+    }
+
+    return userApiLimit.count;
+}

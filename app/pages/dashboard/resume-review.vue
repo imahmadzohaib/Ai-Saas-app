@@ -126,6 +126,8 @@ const reviewResume = async (event: FormSubmitEvent<Schema>) => {
     if (data) {
       content.value = data;
     }
+    await refreshNuxtData("userData")
+
   } catch (e) {
     const err = e as FetchError;
     error.value = getError(err);

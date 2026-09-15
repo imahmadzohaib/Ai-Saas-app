@@ -162,6 +162,8 @@ const removeObjectFromImages = async (event: FormSubmitEvent<Schema>) => {
     if (data) {
       mappedImageUrl.value = data as string;
     }
+    await refreshNuxtData("userData")
+
   } catch (e) {
     const err = e as FetchError;
     error.value = getError(err);

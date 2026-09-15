@@ -117,6 +117,8 @@ const sendMessage = async (event: FormSubmitEvent<Schema>) => {
         content: data,
       });
     }
+
+    await refreshNuxtData("userData")
     state.userPrompt = "";
   } catch (e) {
       const err = e as FetchError;

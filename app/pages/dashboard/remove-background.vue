@@ -154,6 +154,8 @@ const generateArticle = async (event: FormSubmitEvent<Schema>) => {
     if(data){
       mappedImageUrl.value = data;
     }
+    await refreshNuxtData("userData")
+
 
   } catch (e) {
     const err = e as FetchError;

@@ -33,6 +33,7 @@
     "zod": "^4.5.4"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.132",
     "dotenv": "^17.4.2",
     "prisma": "^7.10.0"
   }
